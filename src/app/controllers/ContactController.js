@@ -16,8 +16,8 @@ class ContactController {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
-        ddd: Yup.number().required().min(3),
-        phone: Yup.string().required().min(9),
+        ddd: Yup.number().required().min(2),
+        phone: Yup.number().required().min(9),
         email: Yup.string().email().required(),
         address: Yup.string().required(),
       })
@@ -88,11 +88,11 @@ class ContactController {
   async update(request, response) {
     try {
       const schema = Yup.object().shape({
-        name: Yup.string(),
-        ddd: Yup.number(),
-        phone: Yup.number(),
-        email: Yup.string().email(),
-        address: Yup.string(),
+        name: Yup.string().required(),
+        ddd: Yup.number().required(),
+        phone: Yup.number().required(),
+        email: Yup.string().email().required(),
+        address: Yup.string().required(),
       })
 
       try {
