@@ -74,16 +74,26 @@ class ContactController {
 
       const { id } = request.params
       const contactId = await Contact.findByPk(id)
-      Item.destroy({ where: { id: contactId.dataValues.id } })
-      return response
-        .status(200)
-        .json({ message: "Contato deletado com sucesso!" })
+
+    try {
+       Item.destroy({ where: { id: contactId.dataValues.id } })
+        return response
+          .status(200)
+          .json({ message: "Contato deletado com sucesso!" })
+        
     } catch (error) {
-      console.log(err)
+      return
     }
+       
+      } catch (error) {
+        console.log(err)
+      }
+
+
+
   }
   /*
-  Método de atualizar contato
+  Método de atualizar contatos
   */
   async update(request, response) {
     try {
